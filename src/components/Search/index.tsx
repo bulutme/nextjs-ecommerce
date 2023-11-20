@@ -7,14 +7,14 @@ import Input from "../Input";
 
 interface SearchInputProps {
   onSearch?: (query: string) => void;
-  fullWidth?: boolean;
+  $fullwidth?: boolean;
 }
 
-const InputWrapper = styled.div<{ fullWidth?: boolean }>`
+const InputWrapper = styled.div<{ $fullwidth?: boolean }>`
   position: relative;
   display: flex;
   align-items: center;
-  width: ${(props) => (props.fullWidth ? "100%" : "auto")};
+  width: ${(props) => (props.$fullwidth ? "100%" : "auto")};
   height: 42px;
 `;
 
@@ -31,7 +31,7 @@ const SearchButton = styled.button`
   height: 100%;
 `;
 
-const SearchInput: React.FC<SearchInputProps> = ({ onSearch, fullWidth }) => {
+const SearchInput: React.FC<SearchInputProps> = ({ onSearch, $fullwidth }) => {
   const [query, setQuery] = useState("");
 
   const handleSearch = () => {
@@ -45,7 +45,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ onSearch, fullWidth }) => {
   };
 
   return (
-    <InputWrapper fullWidth={fullWidth}>
+    <InputWrapper $fullwidth={$fullwidth}>
       <Input
         type="text"
         placeholder="Search by product, brand and category"
