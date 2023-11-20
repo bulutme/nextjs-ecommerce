@@ -7,10 +7,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactNode;
   iconSize?: number;
   loading?: boolean;
-  variant?: "default" | "outlined" | "dashed" | "link" | "filled" | "rounded";
+  $variant?: "default" | "outlined" | "dashed" | "link" | "filled" | "rounded";
   color?: "primary" | "error" | "warning" | "secondary" | "success" | "info";
   size?: "small" | "medium" | "large";
-  fullWidth?: boolean;
+  $fullwidth?: boolean;
 }
 
 const sizeStyles = {
@@ -96,10 +96,10 @@ const ButtonStyled = styled.button<ButtonProps>`
 
   ${({ size = "medium" }) => sizeStyles[size]}
   ${({ color = "primary" }) => colorStyles[color]}
-  ${({ variant = "default" }) => variantStyles[variant]}
+  ${({ $variant = "default" }) => variantStyles[$variant]}
 
-  ${({ fullWidth }) =>
-    fullWidth &&
+  ${({ $fullwidth }) =>
+    $fullwidth &&
     css`
       width: 100%;
     `}

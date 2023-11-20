@@ -15,9 +15,9 @@ const Trigger = styled.div`
   cursor: pointer;
 `;
 
-const PopupContent = styled.div<{ visible: boolean }>`
-  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
-  opacity: ${(props) => (props.visible ? 1 : 0)};
+const PopupContent = styled.div<{ $visible: boolean }>`
+  visibility: ${(props) => (props.$visible ? "visible" : "hidden")};
+  opacity: ${(props) => (props.$visible ? 1 : 0)};
   position: absolute;
   z-index: 1000;
   top: 80%;
@@ -42,7 +42,7 @@ const Popup: React.FC<PopupProps> = ({ trigger, content }) => {
   return (
     <PopupContainer>
       <Trigger>{trigger}</Trigger>
-      <PopupContent visible={false}>{content}</PopupContent>
+      <PopupContent $visible={false}>{content}</PopupContent>
     </PopupContainer>
   );
 };

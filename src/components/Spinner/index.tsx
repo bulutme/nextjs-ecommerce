@@ -3,7 +3,6 @@ import React from "react";
 
 interface SpinnerProps {
   style?: React.CSSProperties;
-  className?: string;
 }
 
 const SpinnerStyled = styled.div<SpinnerProps>`
@@ -20,10 +19,10 @@ const SpinnerStyled = styled.div<SpinnerProps>`
   }
 `;
 
-const Spinner: React.FC<SpinnerProps> = ({ style, className }) => {
+const Spinner: React.FC<SpinnerProps> = ({ style }) => {
   return (
-    <SpinnerStyled role="status" className={className} style={style}>
-      <span className="sr-only">Loading...</span>
+    <SpinnerStyled role="status" style={style}>
+      <span>Loading...</span>
     </SpinnerStyled>
   );
 };

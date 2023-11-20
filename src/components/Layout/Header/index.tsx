@@ -62,7 +62,7 @@ const Header = () => {
           />
         </LogoLink>
         <SearchInput
-          fullWidth
+          $fullwidth
           onSearch={(value) => {
             console.log(value);
           }}
@@ -74,7 +74,7 @@ const Header = () => {
                 icon={<MdOutlineShoppingCart />}
                 type="button"
                 size="small"
-                variant="link"
+                $variant="link"
                 iconSize={24}
               >
                 My Cart
