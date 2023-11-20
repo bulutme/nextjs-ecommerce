@@ -21,7 +21,7 @@ const InputWrapper = styled.div<{ fullWidth?: boolean }>`
 const SearchButton = styled.button`
   position: absolute;
   right: 0;
-  background-color: #3bb77e;
+  background-color: ${({ theme }) => theme.colors.primary};
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;

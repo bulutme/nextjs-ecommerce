@@ -26,7 +26,6 @@ const PopupContent = styled.div<{ visible: boolean }>`
   width: 340px;
   max-height: 350px;
   overflow-y: scroll;
-  padding: 12px 12px 0;
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
