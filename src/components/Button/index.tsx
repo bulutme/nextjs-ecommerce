@@ -30,52 +30,50 @@ const sizeStyles = {
 
 const colorStyles = {
   primary: css`
-    background-color: #3bb77e;
-    color: #fff;
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.white};
   `,
   error: css`
-    background-color: #e74c3c;
-    color: #fff;
+    background-color: ${({ theme }) => theme.colors.error};
+    color: ${({ theme }) => theme.colors.white};
   `,
   warning: css`
-    background-color: #f39c12;
-    color: #fff;
+    background-color: ${({ theme }) => theme.colors.warning};
+    color: ${({ theme }) => theme.colors.white};
   `,
   secondary: css`
-    background-color: #2c3e50;
-    color: #fff;
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.white};
   `,
   success: css`
-    background-color: #27ae60;
-    color: #fff;
+    background-color: ${({ theme }) => theme.colors.success};
+    color: ${({ theme }) => theme.colors.white};
   `,
   info: css`
-    background-color: #3bb77e;
-    color: #fff;
+    background-color: ${({ theme }) => theme.colors.info};
+    color: ${({ theme }) => theme.colors.white};
   `,
 };
 
 const variantStyles = {
-  default: css`
-    /* Varsayılan stiller */
-  `,
+  default: css``,
   outlined: css`
-    border: 2px solid #3bb77e;
+    border: 2px solid ${({ theme }) => theme.colors.primary};
     background-color: transparent;
-    color: #3bb77e;
+    color: ${({ theme }) => theme.colors.primary};
   `,
   dashed: css`
-    border: 2px dashed #3bb77e;
+    border: 2px dashed ${({ theme }) => theme.colors.primary};
     background-color: transparent;
-    color: #3bb77e;
+    color: ${({ theme }) => theme.colors.primary};
   `,
   link: css`
     background-color: transparent;
-    color: #3bb77e;
+    color: ${({ theme }) => theme.colors.primary};
     text-decoration: underline;
   `,
   filled: css`
-    background-color: #3bb77e;
+    background-color: ${({ theme }) => theme.colors.primary};
     color: #fff;
   `,
   rounded: css`
@@ -87,8 +85,9 @@ const ButtonStyled = styled.button<ButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
   cursor: pointer;
+  width: fit-content;
   position: relative;
   white-space: nowrap;
   transition: color 0.2s ease;

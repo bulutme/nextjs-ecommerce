@@ -13,7 +13,7 @@ const StyledInput = styled.input`
   height: 100%;
 
   &:focus {
-    border-color: #3bb77e;
+    border-color: ${({ theme }) => theme.colors.primary};
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
   }
 `;
