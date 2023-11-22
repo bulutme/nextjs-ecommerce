@@ -1,10 +1,13 @@
+"use client";
+
 import { Providers } from "@/app/providers";
-import React from "react";
 import Header from "./Header";
+import GlobalStyles from "@/styles/global";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Providers>
+      <GlobalStyles />
       <Header />
       {children}
     </Providers>

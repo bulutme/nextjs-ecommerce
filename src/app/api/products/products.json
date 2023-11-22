@@ -1,0 +1,391 @@
+[
+  {
+    "id": 1,
+    "name": "Men's Ski Jacket",
+    "description": "A high-performance ski jacket for men",
+    "price": 299.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Ski",
+    "brand": "The North Face",
+    "sku": "TNF-SKI-MJ01",
+    "inventory": {
+      "S": 10,
+      "M": 20,
+      "L": 15,
+      "XL": 5
+    }
+  },
+  {
+    "id": 2,
+    "name": "Women's Ski Pants",
+    "description": "Warm and waterproof ski pants for women",
+    "price": 199.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Ski",
+    "brand": "Columbia",
+    "sku": "COL-SKI-WP02",
+    "inventory": {
+      "S": 5,
+      "M": 10,
+      "L": 20,
+      "XL": 15
+    }
+  },
+  {
+    "id": 3,
+    "name": "Men's Snowboard Boots",
+    "description": "Comfortable and durable snowboard boots for men",
+    "price": 249.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Snowboard",
+    "brand": "Burton",
+    "sku": "BUR-SNB-MB03",
+    "inventory": {
+      "8": 15,
+      "9": 10,
+      "10": 5,
+      "11": 20
+    }
+  },
+  {
+    "id": 4,
+    "name": "Women's Snowboard",
+    "description": "A versatile snowboard designed for women",
+    "price": 399.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Snowboard",
+    "brand": "Ride",
+    "sku": "RDE-SNB-WB04",
+    "inventory": {
+      "144": 10,
+      "148": 15,
+      "152": 5,
+      "156": 20
+    }
+  },
+  {
+    "id": 5,
+    "name": "Skateboard Deck",
+    "description": "A high-quality skateboard deck made from maple wood",
+    "price": 59.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Skate",
+    "brand": "Element",
+    "sku": "ELM-SKT-SD05",
+    "inventory": {
+      "7.75": 10,
+      "8.0": 15,
+      "8.25": 5,
+      "8.5": 20
+    }
+  },
+  {
+    "id": 7,
+    "name": "Surfboard",
+    "description": "A high-performance surfboard designed for advanced riders",
+    "price": 799.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Surf",
+    "brand": "Channel Islands",
+    "sku": "CI-SRF-SB07",
+    "inventory": {
+      "5'10\"": 5,
+      "6'0\"": 10,
+      "6'2\"": 15,
+      "6'4\"": 20
+    }
+  },
+  {
+    "id": 8,
+    "name": "Wetsuit",
+    "description": "A comfortable and flexible wetsuit for cold water surfing",
+    "price": 299.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Surf",
+    "brand": "Xcel",
+    "sku": "XCL-SRF-WS08",
+    "inventory": {
+      "S": 10,
+      "M": 15,
+      "L": 20,
+      "XL": 5
+    }
+  },
+  {
+    "id": 9,
+    "name": "Surfboard Leash",
+    "description": "A strong and durable leash for surfboards",
+    "price": 29.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Surf",
+    "brand": "FCS",
+    "sku": "FCS-SRF-SL09",
+    "inventory": {
+      "6'": 20,
+      "7'": 15,
+      "8'": 10,
+      "9'": 5
+    }
+  },
+  {
+    "id": 10,
+    "name": "Surfboard Fins",
+    "description": "A set of 3 fins for surfboards",
+    "price": 49.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Surf",
+    "brand": "FCS",
+    "sku": "FCS-SRF-SF10",
+    "inventory": {
+      "5'10\"": 10,
+      "6'0\"": 15,
+      "6'2\"": 20,
+      "6'4\"": 5
+    }
+  },
+  {
+    "id": 11,
+    "name": "Surfboard Wax",
+    "description": "A bar of wax for surfboards",
+    "price": 9.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Surf",
+    "brand": "FCS",
+    "sku": "FCS-SRF-SW11",
+    "inventory": {
+      "5'10\"": 15,
+      "6'0\"": 20,
+      "6'2\"": 5,
+      "6'4\"": 10
+    }
+  },
+  {
+    "id": 12,
+    "name": "Surfboard Tail Pad",
+    "description": "A tail pad for surfboards",
+    "price": 19.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Surf",
+    "brand": "FCS",
+    "sku": "FCS-SRF-STP12",
+    "inventory": {
+      "5'10\"": 20,
+      "6'0\"": 5,
+      "6'2\"": 10,
+      "6'4\"": 15
+    }
+  },
+  {
+    "id": 13,
+    "name": "Surfboard Leash Plug",
+    "description": "A leash plug for surfboards",
+    "price": 4.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Surf",
+    "brand": "FCS",
+    "sku": "FCS-SRF-SLP13",
+    "inventory": {
+      "5'10\"": 5,
+      "6'0\"": 10,
+      "6'2\"": 15,
+      "6'4\"": 20
+    }
+  },
+  {
+    "id": 14,
+    "name": "Surfboard Leash Plug Key",
+    "description": "A key for surfboard leash plugs",
+    "price": 2.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Surf",
+    "brand": "FCS",
+    "sku": "FCS-SRF-SLPK14",
+    "inventory": {
+      "5'10\"": 10,
+      "6'0\"": 15,
+      "6'2\"": 20,
+      "6'4\"": 5
+    }
+  },
+  {
+    "id": 15,
+    "name": "Surfboard Leash Plug Screw",
+    "description": "A screw for surfboard leash plugs",
+    "price": 1.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Surf",
+    "brand": "FCS",
+    "sku": "FCS-SRF-SLPS15",
+    "inventory": {
+      "5'10\"": 15,
+      "6'0\"": 20,
+      "6'2\"": 5,
+      "6'4\"": 10
+    }
+  },
+  {
+    "id": 16,
+    "name": "Surfboard Leash Plug Screwdriver",
+    "description": "A screwdriver for surfboard leash plugs",
+    "price": 3.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Surf",
+    "brand": "FCS",
+    "sku": "FCS-SRF-SLPSD16",
+    "inventory": {
+      "5'10\"": 20,
+      "6'0\"": 5,
+      "6'2\"": 10,
+      "6'4\"": 15
+    }
+  },
+  {
+    "id": 17,
+    "name": "Surfboard",
+    "description": "A high-performance surfboard for advanced surfers",
+    "price": 799.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Surf",
+    "brand": "Lost",
+    "sku": "LST-SRF-SB07",
+    "inventory": {
+      "6'0\"": 5,
+      "6'2\"": 10,
+      "6'4\"": 15
+    }
+  },
+  {
+    "id": 18,
+    "name": "Wetsuit",
+    "description": "A full-body wetsuit for cold-water surfing",
+    "price": 299.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Surf",
+    "brand": "Xcel",
+    "sku": "XCL-SRF-WS08",
+    "inventory": {
+      "S": 10,
+      "M": 15,
+      "L": 20,
+      "XL": 5
+    }
+  },
+  {
+    "id": 19,
+    "name": "Surf Wax",
+    "description": "A high-quality surf wax for better grip on your surfboard",
+    "price": 9.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Surf",
+    "brand": "Sticky Bumps",
+    "sku": "STK-SRF-SW09",
+    "inventory": {
+      "Warm/Tropical": 50,
+      "Cool/Cold": 30,
+      "Base Coat": 20
+    }
+  },
+  {
+    "id": 20,
+    "name": "Surf Leash",
+    "description": "A durable leash to keep your surfboard from getting away",
+    "price": 29.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Surf",
+    "brand": "FCS",
+    "sku": "FCS-SRF-SL10",
+    "inventory": {
+      "6'": 15,
+      "7'": 10,
+      "8'": 5
+    }
+  },
+  {
+    "id": 21,
+    "name": "Surf Fin Set",
+    "description": "A set of high-performance fins for your surfboard",
+    "price": 99.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Surf",
+    "brand": "Future Fins",
+    "sku": "FTF-SRF-FS11",
+    "inventory": {
+      "Small": 10,
+      "Medium": 15,
+      "Large": 20
+    }
+  },
+  {
+    "id": 22,
+    "name": "Skateboard Deck",
+    "description": "A high-quality skateboard deck for tricks and cruising",
+    "price": 59.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Skateboard",
+    "brand": "Element",
+    "sku": "ELM-SKB-DK12",
+    "inventory": {
+      "7.75\"": 15,
+      "8.0\"": 10,
+      "8.25\"": 5
+    }
+  },
+  {
+    "id": 23,
+    "name": "Skateboard Truck Set",
+    "description": "A set of durable skateboard trucks for better turning",
+    "price": 49.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Skateboard",
+    "brand": "Independent",
+    "sku": "IND-SKB-TS13",
+    "inventory": {
+      "129mm": 20,
+      "139mm": 15,
+      "149mm": 10
+    }
+  },
+  {
+    "id": 24,
+    "name": "Skateboard Wheels",
+    "description": "A set of high-performance skateboard wheels for tricks and cruising",
+    "price": 29.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Skateboard",
+    "brand": "Spitfire",
+    "sku": "SPF-SKB-WL14",
+    "inventory": {
+      "52mm": 20,
+      "54mm": 15,
+      "56mm": 10
+    }
+  },
+  {
+    "id": 25,
+    "name": "Skateboard Bearings",
+    "description": "A set of high-quality skateboard bearings for a smooth ride",
+    "price": 19.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Skateboard",
+    "brand": "Bones",
+    "sku": "BNS-SKB-BR15",
+    "inventory": {
+      "ABEC 5": 20,
+      "ABEC 7": 15,
+      "Ceramic": 10
+    }
+  },
+  {
+    "id": 26,
+    "name": "Skateboard Grip Tape",
+    "description": "A roll of high-quality skateboard grip tape for better traction",
+    "price": 9.99,
+    "image": "https://source.unsplash.com/random/300×300",
+    "category": "Skateboard",
+    "brand": "Mob",
+    "sku": "MOB-SKB-GT16",
+    "inventory": {
+      "9\"x33\"": 50
+    }
+  }
+]

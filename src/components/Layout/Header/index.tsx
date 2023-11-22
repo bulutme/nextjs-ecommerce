@@ -1,6 +1,4 @@
-"use client";
-
-import React from "react";
+import { useCallback } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import Button from "@/components/Button";
@@ -9,6 +7,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import Link from "next/link";
 import Container from "@/components/Container";
 import CartPopup from "@/components/Cart/CartPopup";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const LogoLink = styled.a`
   display: block;
@@ -49,6 +48,20 @@ const Cart = styled.div`
 `;
 
 const Header = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams()!;
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
   return (
     <Container>
       <HeaderContainer>
@@ -58,13 +71,17 @@ const Header = () => {
             width={100}
             height={55}
             alt="BiSürpriz Logo"
-            priority
           />
         </LogoLink>
         <SearchInput
+          initialValue={searchParams.get("query")!}
           $fullwidth
           onSearch={(value) => {
-            console.log(value);
+            router.push(
+              value
+                ? pathname + "?" + createQueryString("query", value)
+                : pathname + ""
+            );
           }}
         />
         <Cart>
