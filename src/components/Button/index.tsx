@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import React, { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes } from "react";
 import Spinner from "../Spinner";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -32,26 +32,50 @@ const colorStyles = {
   primary: css`
     background-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.white};
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.primaryDark};
+    }
   `,
   error: css`
     background-color: ${({ theme }) => theme.colors.error};
     color: ${({ theme }) => theme.colors.white};
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.errorDark};
+    }
   `,
   warning: css`
     background-color: ${({ theme }) => theme.colors.warning};
     color: ${({ theme }) => theme.colors.white};
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.warningDark};
+    }
   `,
   secondary: css`
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.white};
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.secondaryDark};
+    }
   `,
   success: css`
     background-color: ${({ theme }) => theme.colors.success};
     color: ${({ theme }) => theme.colors.white};
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.successDark};
+    }
   `,
   info: css`
     background-color: ${({ theme }) => theme.colors.info};
     color: ${({ theme }) => theme.colors.white};
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.infoDark};
+    }
   `,
 };
 
@@ -71,10 +95,15 @@ const variantStyles = {
     background-color: transparent;
     color: ${({ theme }) => theme.colors.primary};
     text-decoration: underline;
+    border-radius: 4px;
+
+    &:hover {
+      background: ${({ theme }) => theme.colors.border};
+    }
   `,
   filled: css`
     background-color: ${({ theme }) => theme.colors.primary};
-    color: #fff;
+    color: ${({ theme }) => theme.colors.white};
   `,
   rounded: css`
     border-radius: 4px;

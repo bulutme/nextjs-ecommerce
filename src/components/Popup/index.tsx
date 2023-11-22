@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 interface PopupProps {
@@ -24,9 +23,8 @@ const PopupContent = styled.div<{ $visible: boolean }>`
   left: -50%;
   transform: translateX(-50%);
   width: 340px;
-  max-height: 350px;
-  overflow-y: scroll;
-  background-color: #fff;
+  max-height: 450px;
+  background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   transition: opacity 0.3s, visibility 0.3s, transform 0.3s;

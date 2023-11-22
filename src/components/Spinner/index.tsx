@@ -1,30 +1,22 @@
-import styled from "styled-components";
-import React from "react";
+import styled, { keyframes } from "styled-components";
 
-interface SpinnerProps {
-  style?: React.CSSProperties;
-}
-
-const SpinnerStyled = styled.div<SpinnerProps>`
-  position: relative;
-  width: 24px;
-  height: 24px;
-  font-size: 24px;
-  animation: spin 1s linear infinite;
-
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
+const rotate = keyframes`
+  to {
+    transform: rotate(360deg);
   }
 `;
 
-const Spinner: React.FC<SpinnerProps> = ({ style }) => {
-  return (
-    <SpinnerStyled role="status" style={style}>
-      <span>Loading...</span>
-    </SpinnerStyled>
-  );
+const SpinnerStyled = styled.div`
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid ${({ theme }) => theme.colors.primary};
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  animation: ${rotate} 1s linear infinite;
+`;
+
+const Spinner: React.FC = () => {
+  return <SpinnerStyled />;
 };
 
 export default Spinner;

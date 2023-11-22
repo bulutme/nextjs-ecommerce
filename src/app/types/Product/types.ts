@@ -1,6 +1,6 @@
 type InventorySizes = Record<string, number>;
 
-type Product = {
+export type Product = {
   id: number;
   name: string;
   description: string;
@@ -9,8 +9,12 @@ type Product = {
   category: string;
   brand: string;
   sku: string;
-  inventory: InventorySizes;
+  inventory: any;
 };
+
+export interface ProductsData {
+  products: Product[];
+}
 
 export type CartItemProps = Pick<
   Product,

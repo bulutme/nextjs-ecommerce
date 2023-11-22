@@ -1,3 +1,5 @@
-export default function Home() {
-  return <main>Home</main>;
+import Main from "@/components/Main";
+
+export default async function Home() {
+  return <Main />;
 }
