@@ -3,7 +3,6 @@ import { ButtonHTMLAttributes } from "react";
 import Spinner from "../Spinner";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  label?: string;
   icon?: React.ReactNode;
   iconSize?: number;
   loading?: boolean;
@@ -98,7 +97,7 @@ const variantStyles = {
     border-radius: 4px;
 
     &:hover {
-      background: ${({ theme }) => theme.colors.border};
+      background: none;
     }
   `,
   filled: css`
@@ -145,6 +144,11 @@ const ButtonStyled = styled.button<ButtonProps>`
     css`
       opacity: 0.5;
       cursor: not-allowed;
+      background: ${({ theme }) => theme.colors.gray};
+
+      &:hover {
+        background: ${({ theme }) => theme.colors.gray};
+      }
     `}
 `;
 

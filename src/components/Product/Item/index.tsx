@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Image from "next/image";
 import { ProductItemProps } from "@/app/types/Product/types";
 import Button from "@/components/Button";
+import { useCart } from "@/context/CartContext";
+import { useToast } from "@/context/ToastContext";
 
 const Description = styled.p`
   position: absolute;
@@ -114,7 +116,7 @@ const PriceContainer = styled.div`
 const Price = styled.span`
   font-size: 0.8rem;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  color: ${({ theme }) => theme.colors.darkGray};
+  color: ${({ theme }) => theme.colors.grayDark};
   margin-bottom: 0.4rem;
 
   @media (min-width: ${({ theme }) => theme.screens.xs}) {
@@ -135,12 +137,29 @@ const StyledButton = styled(Button)`
 `;
 
 const ProductItem: React.FC<ProductItemProps> = ({
+  brand,
   price,
   image,
   description,
   name,
   id,
 }) => {
+  const { addToCart } = useCart();
+  const { addToast } = useToast();
+
+  const handleAddToCart = () => {
+    addToCart({
+      id,
+      name,
+      description,
+      image,
+      price,
+      brand,
+    });
+
+    addToast("success", `${name} added to cart`);
+  };
+
   return (
     <ProductContainer key={id}>
       <ImageContainer>
@@ -151,7 +170,12 @@ const ProductItem: React.FC<ProductItemProps> = ({
         <ProductName>{name}</ProductName>
         <PriceContainer>
           <Price>${price}</Price>
-          <Button size="small" color="primary" $variant="rounded">
+          <Button
+            onClick={handleAddToCart}
+            size="small"
+            color="primary"
+            $variant="rounded"
+          >
             Sepete Ekle
           </Button>
         </PriceContainer>

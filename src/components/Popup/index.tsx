@@ -22,7 +22,7 @@ const PopupContent = styled.div<{ $visible: boolean }>`
   top: 80%;
   left: -50%;
   transform: translateX(-50%);
-  width: 340px;
+  width: 400px;
   max-height: 450px;
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
