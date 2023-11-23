@@ -8,6 +8,7 @@ import { useInView } from "react-intersection-observer";
 import Spinner from "../Spinner";
 import { useSearchParams } from "next/navigation";
 import { fetchProducts } from "@/lib/api";
+import EmptyProductList from "../Product/EmptyProductList";
 
 const Container = styled.div`
   display: flex;
@@ -99,6 +100,7 @@ const InfinityScroll = () => {
             image={item.image}
             price={item.price}
             id={item.id}
+            brand={item.brand}
           />
         ))}
       </GridContainer>
@@ -107,7 +109,7 @@ const InfinityScroll = () => {
           <Spinner />
         </SpinnerWrapper>
       )}
-      {!isloading && products.length === 0 && "URUN yok"}
+      {!isloading && products.length === 0 && <EmptyProductList />}
     </Container>
   );
 };

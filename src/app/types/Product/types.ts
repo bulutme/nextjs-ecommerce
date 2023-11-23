@@ -16,9 +16,12 @@ export interface ProductsData {
   products: Product[];
 }
 
-export type CartItemProps = Pick<
-  Product,
-  "name" | "id" | "description" | "price" | "image" | "brand"
->;
+export type ProductItemProps = Omit<Product, "inventory" | "sku" | "category">;
 
-export type ProductItemProps = Omit<CartItemProps, "brand">;
+export interface CartItemProps {
+  brand: string;
+  products: {
+    product: ProductItemProps;
+    count: number;
+  }[];
+}

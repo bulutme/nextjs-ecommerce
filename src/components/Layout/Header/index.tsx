@@ -8,6 +8,7 @@ import Link from "next/link";
 import Container from "@/components/Container";
 import CartPopup from "@/components/Cart/CartPopup";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCart } from "@/context/CartContext";
 
 const LogoLink = styled.a`
   display: block;
@@ -38,6 +39,10 @@ const HeaderContainer = styled.div`
   }
 `;
 
+const ButtonWrapper = styled.div`
+  position: relative;
+`;
+
 const Cart = styled.div`
   position: absolute;
   right: 32px;
@@ -47,10 +52,27 @@ const Cart = styled.div`
   }
 `;
 
+const Badge = styled.span<{ $showBadge: boolean }>`
+  position: absolute;
+  top: 0;
+  right: -10px;
+  background-color: ${({ theme }) => theme.colors.error};
+  text-align: center;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: 0.75rem;
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  line-height: 22px;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: ${({ $showBadge }) => ($showBadge ? "block" : "none")};
+`;
+
 const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams()!;
+  const searchParams = useSearchParams();
+  const { totalItemCount } = useCart();
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -61,6 +83,8 @@ const Header = () => {
     },
     [searchParams]
   );
+
+  const isCartVisible = pathname !== "/cart";
 
   return (
     <Container>
@@ -78,27 +102,32 @@ const Header = () => {
           $fullwidth
           onSearch={(value) => {
             router.push(
-              value
-                ? pathname + "?" + createQueryString("query", value)
-                : pathname + ""
+              value ? `/?${createQueryString("query", value)}` : pathname + ""
             );
           }}
         />
-        <Cart>
-          <CartPopup>
-            <Link href="/cart">
-              <Button
-                icon={<MdOutlineShoppingCart />}
-                type="button"
-                size="small"
-                $variant="link"
-                iconSize={24}
-              >
-                My Cart
-              </Button>
-            </Link>
-          </CartPopup>
-        </Cart>
+        {isCartVisible && (
+          <Cart>
+            <CartPopup>
+              <Link href="/cart">
+                <ButtonWrapper>
+                  <Button
+                    icon={<MdOutlineShoppingCart />}
+                    type="button"
+                    size="small"
+                    $variant="link"
+                    iconSize={24}
+                  >
+                    My Cart
+                  </Button>
+                  <Badge $showBadge={totalItemCount > 0}>
+                    {totalItemCount}
+                  </Badge>
+                </ButtonWrapper>
+              </Link>
+            </CartPopup>
+          </Cart>
+        )}
       </HeaderContainer>
     </Container>
   );
