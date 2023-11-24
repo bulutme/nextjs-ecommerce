@@ -31,10 +31,11 @@ const Description = styled.p`
 
 const ProductContainer = styled.div`
   display: flex;
-  background-color: white;
+  align-items: center;
+  background-color: ${({ theme }) => theme.colors.white};
   gap: 0.75rem;
   color: ${({ theme }) => theme.colors.black};
-  border-radius: 0.5rem;
+  border-radius: 8px;
   padding: 1rem;
   border: 1px solid ${({ theme }) => theme.colors.border};
   transition: all 0.3s ease;
@@ -51,6 +52,7 @@ const ProductContainer = styled.div`
 
   @media (min-width: ${({ theme }) => theme.screens.xs}) {
     flex-direction: column;
+    align-items: initial;
     gap: 0;
   }
 `;
@@ -71,6 +73,7 @@ const ImageContainer = styled.div`
 
 const StyledImage = styled(Image)`
   width: 100%;
+  height: auto;
   object-fit: cover;
   aspect-ratio: 1 / 1;
   cursor: pointer;
@@ -94,6 +97,9 @@ const Content = styled.div`
 const ProductName = styled.h3`
   font-size: 1rem;
   font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   @media (min-width: ${({ theme }) => theme.screens.xs}) {
     font-size: 1.125rem;
@@ -101,10 +107,22 @@ const ProductName = styled.h3`
   }
 `;
 
+const Brand = styled.p`
+  color: ${({ theme }) => theme.colors.info};
+
+  @media (min-width: ${({ theme }) => theme.screens.xs}) {
+    margin-top: 1rem;
+  }
+`;
+
+const Category = styled.p`
+  color: ${({ theme }) => theme.colors.gray};
+  font-size: 1rem;
+`;
+
 const PriceContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
 
   @media (min-width: ${({ theme }) => theme.screens.xs}) {
     flex-direction: row;
@@ -116,27 +134,17 @@ const PriceContainer = styled.div`
 const Price = styled.span`
   font-size: 0.8rem;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  color: ${({ theme }) => theme.colors.grayDark};
+  color: ${({ theme }) => theme.colors.primary};
   margin-bottom: 0.4rem;
 
   @media (min-width: ${({ theme }) => theme.screens.xs}) {
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-bottom: 0;
   }
 `;
 
-const StyledButton = styled(Button)`
-  font-size: 0.7rem;
-  margin-top: 0.5rem;
-
-  @media (min-width: ${({ theme }) => theme.screens.xs}) {
-    font-size: 1rem;
-    width: 100%;
-    margin-top: 0.8rem;
-  }
-`;
-
 const ProductItem: React.FC<ProductItemProps> = ({
+  category,
   brand,
   price,
   image,
@@ -163,11 +171,13 @@ const ProductItem: React.FC<ProductItemProps> = ({
   return (
     <ProductContainer key={id}>
       <ImageContainer>
-        <StyledImage src={image} alt="Description" width={500} height={300} />
+        <StyledImage src={image} alt={name} width={500} height={300} priority />
         <Description>{description}</Description>
       </ImageContainer>
       <Content>
+        <Brand>{brand}</Brand>
         <ProductName>{name}</ProductName>
+        <Category>{category}</Category>
         <PriceContainer>
           <Price>${price}</Price>
           <Button

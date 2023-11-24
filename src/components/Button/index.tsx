@@ -6,8 +6,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactNode;
   iconSize?: number;
   loading?: boolean;
-  $variant?: "default" | "outlined" | "dashed" | "link" | "filled" | "rounded";
-  color?: "primary" | "error" | "warning" | "secondary" | "success" | "info";
+  $variant?: "default" | "link" | "rounded";
+  color?: "primary";
   size?: "small" | "medium" | "large";
   $fullwidth?: boolean;
 }
@@ -36,60 +36,10 @@ const colorStyles = {
       background-color: ${({ theme }) => theme.colors.primaryDark};
     }
   `,
-  error: css`
-    background-color: ${({ theme }) => theme.colors.error};
-    color: ${({ theme }) => theme.colors.white};
-
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.errorDark};
-    }
-  `,
-  warning: css`
-    background-color: ${({ theme }) => theme.colors.warning};
-    color: ${({ theme }) => theme.colors.white};
-
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.warningDark};
-    }
-  `,
-  secondary: css`
-    background-color: ${({ theme }) => theme.colors.secondary};
-    color: ${({ theme }) => theme.colors.white};
-
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.secondaryDark};
-    }
-  `,
-  success: css`
-    background-color: ${({ theme }) => theme.colors.success};
-    color: ${({ theme }) => theme.colors.white};
-
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.successDark};
-    }
-  `,
-  info: css`
-    background-color: ${({ theme }) => theme.colors.info};
-    color: ${({ theme }) => theme.colors.white};
-
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.infoDark};
-    }
-  `,
 };
 
 const variantStyles = {
   default: css``,
-  outlined: css`
-    border: 2px solid ${({ theme }) => theme.colors.primary};
-    background-color: transparent;
-    color: ${({ theme }) => theme.colors.primary};
-  `,
-  dashed: css`
-    border: 2px dashed ${({ theme }) => theme.colors.primary};
-    background-color: transparent;
-    color: ${({ theme }) => theme.colors.primary};
-  `,
   link: css`
     background-color: transparent;
     color: ${({ theme }) => theme.colors.primary};
@@ -99,10 +49,6 @@ const variantStyles = {
     &:hover {
       background: none;
     }
-  `,
-  filled: css`
-    background-color: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.white};
   `,
   rounded: css`
     border-radius: 4px;

@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  ReactNode,
+  useEffect,
+  useState,
+} from "react";
 import { ProductItemProps } from "@/app/types/Product/types";
 import useLocalStorage from "@/hooks/useLocalStorage";
 
@@ -20,12 +26,23 @@ type CartContextType = {
   decreaseCount: (productId: number) => void;
   totalItemCount: number;
   totalPrice: string;
+  isLoading: boolean;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useLocalStorage<GroupedCart[]>("cart", []);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsLoading(true);
+      setCart(JSON.parse(localStorage.getItem("cart") as string));
+      setIsLoading(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const totalItemCount = cart.reduce(
     (total, group) =>
@@ -132,6 +149,7 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
     removeProduct,
     increaseCount,
     decreaseCount,
+    isLoading,
   };
 
   return (
@@ -141,6 +159,7 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
 
 const useCart = () => {
   const context = useContext(CartContext);
+
   if (!context) {
     throw new Error("useCart must be used within a CartProvider");
   }

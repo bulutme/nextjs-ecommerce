@@ -20,15 +20,23 @@ function filterProductsByQuery(products: Product[], query: string) {
     return products;
   }
 
-  return queryTerms.reduce((result, term) => {
-    const termFilteredProducts = result.filter((product) => {
-      return sanitizeText(product.name.toLowerCase()).includes(
-        sanitizeText(term)
+  const filteredProducts = products.filter((product) => {
+    return queryTerms.every((term) => {
+      const termInName = sanitizeText(product.name.toLowerCase()).includes(
+        term
       );
-    });
+      const termInCategory = sanitizeText(
+        product.category.toLowerCase()
+      ).includes(term);
+      const termInBrand = sanitizeText(product.brand.toLowerCase()).includes(
+        term
+      );
 
-    return [...termFilteredProducts];
-  }, products);
+      return termInName || termInCategory || termInBrand;
+    });
+  });
+
+  return filteredProducts;
 }
 
 function sliceProducts(products: Product[], pageNumber: number) {

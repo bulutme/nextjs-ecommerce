@@ -1,5 +1,3 @@
-// ToastContext.tsx
-// Diğer import'ları ekleyin
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
 export type ToastType = "success" | "error" | "exit";

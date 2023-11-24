@@ -1,4 +1,4 @@
-type InventorySizes = Record<string, number>;
+type InventorySizes = Record<string, number | undefined>;
 
 export type Product = {
   id: number;
@@ -9,19 +9,14 @@ export type Product = {
   category: string;
   brand: string;
   sku: string;
-  inventory: any;
+  inventory: InventorySizes;
+  [key: string]: any;
 };
 
-export interface ProductsData {
-  products: Product[];
-}
+export type ProductItemProps = Omit<Product, "inventory" | "sku">;
 
-export type ProductItemProps = Omit<Product, "inventory" | "sku" | "category">;
-
-export interface CartItemProps {
-  brand: string;
-  products: {
-    product: ProductItemProps;
-    count: number;
-  }[];
-}
+export type FetchProductsResponse = {
+  data: Product[];
+  page: Number;
+  hasNextPage: boolean;
+};

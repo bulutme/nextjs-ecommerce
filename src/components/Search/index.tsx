@@ -13,6 +13,7 @@ const InputWrapper = styled.div<{ $fullwidth?: boolean }>`
   align-items: center;
   width: ${(props) => (props.$fullwidth ? "100%" : "auto")};
   height: 42px;
+  max-width: 650px;
 `;
 
 const SearchInput: React.FC<SearchInputProps> = ({

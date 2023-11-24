@@ -1,14 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-import { Product } from "@/app/types/Product/types";
+import { FetchProductsResponse, Product } from "@/app/types/Product/types";
 import ProductItem from "../Product/Item";
 import { useInView } from "react-intersection-observer";
-import Spinner from "../Spinner";
-import { useSearchParams } from "next/navigation";
-import { fetchProducts } from "@/lib/api";
+import Loading from "@/app/loading";
 import EmptyProductList from "../Product/EmptyProductList";
+
+type Props = {
+  initialData: Product[];
+  search?: string;
+  hasNextPage: Boolean;
+  query: (
+    page: number,
+    search?: string | undefined
+  ) => Promise<FetchProductsResponse>;
+};
 
 const Container = styled.div`
   display: flex;
@@ -26,7 +35,7 @@ const GridContainer = styled.div`
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @media (min-width: ${({ theme }) => theme.screens.md}) {
+  @media (min-width: ${({ theme }) => theme.screens.lg}) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
@@ -36,58 +45,50 @@ const GridContainer = styled.div`
 `;
 
 const SpinnerWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
   margin-top: 15%;
+
+  @media (min-width: ${({ theme }) => theme.screens["3xl"]}) {
+    margin-top: 30%;
+  }
 `;
 
-const InfinityScroll = () => {
-  const searchParams = useSearchParams();
-  const search = searchParams.get("query");
-  const [products, setProducts] = useState<Product[]>([]);
-  const [page, setPage] = useState<number>(1);
+const InfinityScroll = ({ initialData, search, hasNextPage, query }: Props) => {
   const [ref, inView] = useInView();
-  const [isloading, setIsLoading] = useState<boolean>(true);
 
-  const getInitialProducts = useCallback(async () => {
-    try {
-      const response = await fetchProducts(1, search!);
-      setProducts(response.data);
-      setIsLoading(response.hasNextPage);
-      setPage(1);
-    } catch (error) {
-      console.error("Error fetching initial data:", error);
-    }
-  }, [search]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [page, setPage] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<Boolean>(true);
 
   const loadMoreProducts = useCallback(async () => {
     try {
-      const next = page + 1;
-      const productsData = await fetchProducts(next, search!);
-      if (productsData.data?.length) {
-        setPage(next);
-        setIsLoading(productsData.hasNextPage);
-        setProducts((prev: Product[] | undefined) => [
-          ...(prev?.length ? prev : []),
-          ...productsData.data,
-        ]);
+      if (inView && page > 0) {
+        const next = page + 1;
+        const productsData = await query(next, search!);
+        if (productsData.data?.length) {
+          setPage(next);
+          setIsLoading(productsData.hasNextPage);
+          setProducts((prev: Product[] | undefined) => [
+            ...(prev?.length ? prev : []),
+            ...productsData.data,
+          ]);
+        }
       }
     } catch (error) {
-      console.error("Error fetching more data:", error);
+      console.log(error, "error");
     }
-  }, [page, search]);
+  }, [page, inView, search]);
 
   useEffect(() => {
-    getInitialProducts();
-  }, [getInitialProducts, search]);
+    setPage(1);
+    setProducts(initialData);
+    setIsLoading(hasNextPage);
+  }, [initialData, search]);
 
   useEffect(() => {
-    if (inView) {
-      loadMoreProducts();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    loadMoreProducts();
   }, [inView]);
+
+  if (!isLoading && products.length === 0) return <EmptyProductList />;
 
   return (
     <Container>
@@ -101,15 +102,15 @@ const InfinityScroll = () => {
             price={item.price}
             id={item.id}
             brand={item.brand}
+            category={item.category}
           />
         ))}
       </GridContainer>
-      {isloading && (
+      {isLoading && (
         <SpinnerWrapper ref={ref}>
-          <Spinner />
+          <Loading />
         </SpinnerWrapper>
       )}
-      {!isloading && products.length === 0 && <EmptyProductList />}
     </Container>
   );
 };
