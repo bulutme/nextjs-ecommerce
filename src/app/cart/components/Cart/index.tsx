@@ -1,11 +1,9 @@
 import styled from "styled-components";
-import { AiOutlineArrowLeft } from "react-icons/ai";
-import Link from "next/link";
 import CartSummary from "./CartSummary";
 import CartItem from "./CartItem";
-import Button from "../Button";
 import { useCart } from "@/context/CartContext";
 import EmptyCart from "./EmptyCart";
+import Loading from "@/app/loading";
 
 const CartContainer = styled.div`
   width: 100%;
@@ -41,7 +39,7 @@ const CartItemsWrapper = styled.div`
 `;
 
 const CartSummaryWrapper = styled.div`
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.white};
   width: 100%;
   position: sticky;
   height: fit-content;
@@ -55,12 +53,15 @@ const CartSummaryWrapper = styled.div`
   }
 `;
 
-const CartWrapper = () => {
-  const { cart, totalItemCount } = useCart();
+const Cart = () => {
+  const { cart, totalItemCount, isLoading } = useCart();
+
+  if (isLoading) return <Loading />;
+  if (!isLoading && cart.length === 0) return <EmptyCart />;
 
   return (
     <CartContainer>
-      {cart && cart.length > 0 ? (
+      {cart && cart.length > 0 && (
         <>
           <CartTitle>My Cart ({totalItemCount} Products)</CartTitle>
           <CartContent>
@@ -72,26 +73,15 @@ const CartWrapper = () => {
                   products={item.products}
                 />
               ))}
-              <Link href="/">
-                <Button
-                  icon={<AiOutlineArrowLeft />}
-                  size="small"
-                  $variant="link"
-                >
-                  Proceed Shopping
-                </Button>
-              </Link>
             </CartItemsWrapper>
             <CartSummaryWrapper>
               <CartSummary />
             </CartSummaryWrapper>
           </CartContent>
         </>
-      ) : (
-        <EmptyCart />
       )}
     </CartContainer>
   );
 };
 
-export default CartWrapper;
+export default Cart;

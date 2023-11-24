@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { FC, useCallback } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import Button from "@/components/Button";
@@ -6,36 +6,33 @@ import SearchInput from "@/components/Search";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import Link from "next/link";
 import Container from "@/components/Container";
-import CartPopup from "@/components/Cart/CartPopup";
+import CartPopup from "@/app/cart/components/Cart/CartPopup";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCart } from "@/context/CartContext";
-
-const LogoLink = styled.a`
-  display: block;
-  width: 200px;
-
-  @media (min-width: ${({ theme }) => theme.screens.md}) {
-    margin-bottom: 0;
-  }
-`;
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 const HeaderContainer = styled.div`
   position: relative;
   width: 100%;
   padding-top: 24px;
   padding-bottom: 8px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   max-height: auto;
-  padding: 2rem;
+  padding: 0.6rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
+  @media (min-width: ${({ theme }) => theme.screens.xs}) {
+    padding: 1rem;
+  }
+
   @media (min-width: ${({ theme }) => theme.screens.md}) {
-    justify-content: space-between;
+    justify-content: space-around;
     gap: 7%;
     align-items: center;
     flex-direction: row;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -45,8 +42,14 @@ const ButtonWrapper = styled.div`
 
 const Cart = styled.div`
   position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 200px;
   right: 32px;
-  top: 40px;
+  top: 18px;
+  height: 40px;
+
   @media (min-width: ${({ theme }) => theme.screens.md}) {
     position: static;
   }
@@ -68,7 +71,7 @@ const Badge = styled.span<{ $showBadge: boolean }>`
   display: ${({ $showBadge }) => ($showBadge ? "block" : "none")};
 `;
 
-const Header = () => {
+const Header: FC = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -84,30 +87,33 @@ const Header = () => {
     [searchParams]
   );
 
+  const handleChangeSearch = (value: string) => {
+    router.push(
+      value ? `/?${createQueryString("query", value)}` : pathname + ""
+    );
+  };
+
   const isCartVisible = pathname !== "/cart";
 
   return (
     <Container>
       <HeaderContainer>
-        <LogoLink href="/">
+        <Link href="/">
           <Image
             src={"/next.svg"}
             width={100}
             height={55}
-            alt="BiSürpriz Logo"
+            alt="next logo"
+            priority
           />
-        </LogoLink>
+        </Link>
         <SearchInput
           initialValue={searchParams.get("query")!}
           $fullwidth
-          onSearch={(value) => {
-            router.push(
-              value ? `/?${createQueryString("query", value)}` : pathname + ""
-            );
-          }}
+          onSearch={(value) => handleChangeSearch(value)}
         />
-        {isCartVisible && (
-          <Cart>
+        <Cart>
+          {isCartVisible ? (
             <CartPopup>
               <Link href="/cart">
                 <ButtonWrapper>
@@ -126,8 +132,20 @@ const Header = () => {
                 </ButtonWrapper>
               </Link>
             </CartPopup>
-          </Cart>
-        )}
+          ) : (
+            <ButtonWrapper>
+              <Link href="/">
+                <Button
+                  icon={<AiOutlineArrowLeft />}
+                  size="small"
+                  $variant="link"
+                >
+                  Proceed Shopping
+                </Button>
+              </Link>
+            </ButtonWrapper>
+          )}
+        </Cart>
       </HeaderContainer>
     </Container>
   );

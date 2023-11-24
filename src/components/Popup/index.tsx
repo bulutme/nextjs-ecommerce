@@ -1,8 +1,9 @@
+import { ReactNode, FC } from "react";
 import styled from "styled-components";
 
 interface PopupProps {
-  trigger: React.ReactNode;
-  content: React.ReactNode;
+  trigger: ReactNode;
+  content: ReactNode;
 }
 
 const PopupContainer = styled.div`
@@ -36,7 +37,7 @@ const PopupContent = styled.div<{ $visible: boolean }>`
   }
 `;
 
-const Popup: React.FC<PopupProps> = ({ trigger, content }) => {
+const Popup: FC<PopupProps> = ({ trigger, content }) => {
   return (
     <PopupContainer>
       <Trigger>{trigger}</Trigger>

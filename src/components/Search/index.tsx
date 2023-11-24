@@ -1,6 +1,7 @@
+import React, { FC } from "react";
 import styled from "styled-components";
-import Input from "../Input";
 import debounce from "lodash.debounce";
+import Input from "../Input";
 interface SearchInputProps {
   onSearch: (query: string) => void;
   $fullwidth?: boolean;
@@ -13,13 +14,15 @@ const InputWrapper = styled.div<{ $fullwidth?: boolean }>`
   align-items: center;
   width: ${(props) => (props.$fullwidth ? "100%" : "auto")};
   height: 42px;
+  max-width: 650px;
 `;
 
-const SearchInput: React.FC<SearchInputProps> = ({
+const SearchInput: FC<SearchInputProps> = ({
   onSearch,
   $fullwidth,
   initialValue,
 }) => {
+  // create a debounced version of the onSearch function
   const debouncedSearch = debounce(onSearch, 300);
   return (
     <InputWrapper $fullwidth={$fullwidth}>

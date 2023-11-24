@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import Button from "../Button";
+import Button from "../../../../components/Button";
 import Link from "next/link";
 
 const EmptyCartContainer = styled.div`
@@ -10,7 +10,7 @@ const EmptyCartContainer = styled.div`
   gap: 20px;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.white};
   border-radius: 8px;
   padding: 16px;
   border: 1px solid ${({ theme }) => theme.colors.border};

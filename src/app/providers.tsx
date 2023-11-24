@@ -1,9 +1,7 @@
-"use client";
-
 import { PropsWithChildren } from "react";
 import { ThemeProvider } from "styled-components";
 import { theme } from "@/styles/theme";
-import StyledComponentsRegistry from "@/lib/registry";
+import StyledComponentsRegistry from "@/lib/styledComponentRegistry";
 import { CartProvider } from "@/context/CartContext";
 import { ToastProvider } from "@/context/ToastContext";
 import Toaster from "@/components/Toast";

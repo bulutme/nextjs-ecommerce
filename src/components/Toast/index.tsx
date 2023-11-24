@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import { useToast } from "@/context/ToastContext";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import styled, { keyframes } from "styled-components";
@@ -28,7 +28,7 @@ const ToasterContainer = styled.div`
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: 1000;
+  z-index: 100;
 `;
 
 const Toast = styled.div`
@@ -65,7 +65,7 @@ const ToastMessage = styled.span`
   flex: 1;
 `;
 
-const Toaster: React.FC = () => {
+const Toaster: FC = () => {
   const { toasts, removeToast } = useToast();
 
   return (

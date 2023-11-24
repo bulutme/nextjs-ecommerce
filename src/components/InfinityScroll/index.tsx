@@ -1,14 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-import { Product } from "@/app/types/Product/types";
+import { FetchResponse, MustHaveId } from "@/app/types/Product/types";
 import ProductItem from "../Product/Item";
 import { useInView } from "react-intersection-observer";
-import Spinner from "../Spinner";
-import { useSearchParams } from "next/navigation";
-import { fetchProducts } from "@/lib/api";
+import Loading from "@/app/loading";
 import EmptyProductList from "../Product/EmptyProductList";
+
+type Props<T extends MustHaveId> = {
+  initialItems: T[];
+  search?: string;
+  hasNextPage: boolean;
+  fetchItems: (
+    page: number,
+    search?: string | undefined
+  ) => Promise<FetchResponse<T>>;
+};
 
 const Container = styled.div`
   display: flex;
@@ -26,7 +35,7 @@ const GridContainer = styled.div`
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @media (min-width: ${({ theme }) => theme.screens.md}) {
+  @media (min-width: ${({ theme }) => theme.screens.lg}) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
@@ -36,80 +45,73 @@ const GridContainer = styled.div`
 `;
 
 const SpinnerWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
   margin-top: 15%;
+
+  @media (min-width: ${({ theme }) => theme.screens["3xl"]}) {
+    margin-top: 30%;
+  }
 `;
 
-const InfinityScroll = () => {
-  const searchParams = useSearchParams();
-  const search = searchParams.get("query");
-  const [products, setProducts] = useState<Product[]>([]);
-  const [page, setPage] = useState<number>(1);
+// MustHaveId ensure that the objects passed as items (T) in the InfinityScroll component have an id property.
+const InfinityScroll = <T extends MustHaveId>({
+  initialItems,
+  search,
+  hasNextPage,
+  fetchItems,
+}: Props<T>) => {
+  // use the useInView hook to determine when the bottom of the container is in view.
   const [ref, inView] = useInView();
-  const [isloading, setIsLoading] = useState<boolean>(true);
 
-  const getInitialProducts = useCallback(async () => {
-    try {
-      const response = await fetchProducts(1, search!);
-      setProducts(response.data);
-      setIsLoading(response.hasNextPage);
-      setPage(1);
-    } catch (error) {
-      console.error("Error fetching initial data:", error);
-    }
-  }, [search]);
+  const [items, setItems] = useState<T[]>([]);
+  const [page, setPage] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const loadMoreProducts = useCallback(async () => {
+  // memoize loadMore function to load more items
+  const loadMore = useCallback(async () => {
     try {
-      const next = page + 1;
-      const productsData = await fetchProducts(next, search!);
-      if (productsData.data?.length) {
-        setPage(next);
-        setIsLoading(productsData.hasNextPage);
-        setProducts((prev: Product[] | undefined) => [
-          ...(prev?.length ? prev : []),
-          ...productsData.data,
-        ]);
+      if (inView && page > 0) {
+        const next = page + 1;
+        const itemsData = await fetchItems(next, search!);
+        if (itemsData.data?.length) {
+          setPage(next);
+          setIsLoading(itemsData.hasNextPage);
+          setItems((prev: T[] | undefined) => [
+            ...(prev?.length ? prev : []),
+            ...itemsData.data,
+          ]);
+        }
       }
     } catch (error) {
-      console.error("Error fetching more data:", error);
+      console.log(error, "error");
     }
-  }, [page, search]);
+  }, [page, inView, search]);
 
+  // useEffect to initialize state when the component mounts or when the search prop changes.
   useEffect(() => {
-    getInitialProducts();
-  }, [getInitialProducts, search]);
+    setPage(1);
+    setItems(initialItems);
+    setIsLoading(hasNextPage);
+  }, [initialItems, search]);
 
+  // useEffect to load more items when inView changes.
   useEffect(() => {
-    if (inView) {
-      loadMoreProducts();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    loadMore();
   }, [inView]);
+
+  if (!isLoading && items.length === 0) return <EmptyProductList />;
 
   return (
     <Container>
       <GridContainer>
-        {products.map((item) => (
-          <ProductItem
-            key={item.id}
-            name={item.name}
-            description={item.description}
-            image={item.image}
-            price={item.price}
-            id={item.id}
-            brand={item.brand}
-          />
+        {items.map((item) => (
+          <ProductItem key={item.id} {...item} />
         ))}
       </GridContainer>
-      {isloading && (
+      {isLoading && (
         <SpinnerWrapper ref={ref}>
-          <Spinner />
+          <Loading />
         </SpinnerWrapper>
       )}
-      {!isloading && products.length === 0 && <EmptyProductList />}
     </Container>
   );
 };

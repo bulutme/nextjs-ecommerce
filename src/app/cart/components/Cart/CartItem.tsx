@@ -2,10 +2,18 @@ import styled, { css } from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineClose } from "react-icons/ai";
-import { CartItemProps } from "@/app/types/Product/types";
+import { ProductItemProps } from "@/app/types/Product/types";
 import { useCart } from "@/context/CartContext";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { ToastType, useToast } from "@/context/ToastContext";
+
+export interface CartItemProps {
+  brand: string;
+  products: {
+    product: Omit<ProductItemProps, "category">;
+    count: number;
+  }[];
+}
 
 const sharedStyles = css`
   display: flex;
@@ -13,16 +21,16 @@ const sharedStyles = css`
 `;
 
 const CartItemContainer = styled.div`
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.white};
   padding: 15px;
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 8px;
 `;
 
 const CartItemListItem = styled.li`
-  position: relative;
   ${sharedStyles}
-  padding: 12px 0;
+  position: relative;
+  padding: 12px 0 24px;
 `;
 
 const ProductName = styled.p`
@@ -33,10 +41,6 @@ const ProductName = styled.p`
 const ProductBrand = styled(ProductName)`
   color: ${({ theme }) => theme.colors.info};
   margin-bottom: 0.6rem;
-`;
-
-const ProductImageLink = styled(Link)`
-  min-width: fit-content;
 `;
 
 const ProductImage = styled(Image)`
@@ -110,12 +114,12 @@ const StyledButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.primary};
-  color: white;
+  color: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors.primary};
   transition: background-color 0.3s, color 0.3s;
 
   &:hover {
-    background-color: white;
+    background-color: ${({ theme }) => theme.colors.white};
     color: ${({ theme }) => theme.colors.primary};
   }
 
@@ -159,15 +163,13 @@ const CartItem: React.FC<CartItemProps> = ({ brand, products }) => {
         {products?.map((item) => {
           return (
             <CartItemListItem key={item.product.id}>
-              <ProductImageLink href={`/products/${item.product.id}`}>
-                <ProductImage
-                  src={item.product.image}
-                  alt={item.product.name}
-                  width={100}
-                  height={100}
-                  loading="lazy"
-                />
-              </ProductImageLink>
+              <ProductImage
+                src={item.product.image}
+                alt={item.product.name}
+                width={100}
+                height={100}
+                loading="lazy"
+              />
               <ProductDetails>
                 <div>
                   <ProductName>{item.product.name}</ProductName>

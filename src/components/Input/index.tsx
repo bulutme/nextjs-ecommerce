@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from "react";
+import { FC, InputHTMLAttributes } from "react";
 import styled from "styled-components";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {}
@@ -17,7 +17,7 @@ const StyledInput = styled.input`
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
   }
 `;
-const Input = (props: Props) => {
+const Input: FC<Props> = (props) => {
   return <StyledInput {...props} />;
 };
 

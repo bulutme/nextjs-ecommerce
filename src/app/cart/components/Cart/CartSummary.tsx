@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import Button from "../Button";
+import Button from "../../../../components/Button";
 import { useCart } from "@/context/CartContext";
+import { FC } from "react";
 
 const SummaryTitle = styled.h3`
   font-size: 1.25rem;
@@ -61,7 +62,7 @@ const TotalPrice = styled(Price)`
   color: ${({ theme }) => theme.colors.primary};
 `;
 
-const CartSummary: React.FC = () => {
+const CartSummary: FC = () => {
   const { totalPrice } = useCart();
 
   return (

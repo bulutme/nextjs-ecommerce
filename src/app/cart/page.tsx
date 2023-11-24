@@ -1,9 +1,9 @@
 "use client";
 
-import CartWrapper from "@/components/Cart/CartWrapper";
+import Cart from "@/app/cart/components/Cart";
 
 const CartPage = () => {
-  return <CartWrapper />;
+  return <Cart />;
 };
 
 export default CartPage;
