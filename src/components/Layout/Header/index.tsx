@@ -134,15 +134,14 @@ const Header: FC = () => {
             </CartPopup>
           ) : (
             <ButtonWrapper>
-              <Link href="/">
-                <Button
-                  icon={<AiOutlineArrowLeft />}
-                  size="small"
-                  $variant="link"
-                >
-                  Proceed Shopping
-                </Button>
-              </Link>
+              <Button
+                icon={<AiOutlineArrowLeft />}
+                size="small"
+                $variant="link"
+                onClick={() => router.back()}
+              >
+                Proceed Shopping
+              </Button>
             </ButtonWrapper>
           )}
         </Cart>
