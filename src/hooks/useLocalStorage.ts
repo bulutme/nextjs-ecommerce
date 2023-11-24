@@ -1,5 +1,6 @@
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
 
+// check if the code is running on the server or in the browser
 const isServer = typeof window === "undefined";
 
 const useLocalStorage = <T>(
@@ -8,6 +9,7 @@ const useLocalStorage = <T>(
 ): [T, Dispatch<SetStateAction<T>>] => {
   const [storedValue, setStoredValue] = useState<T>(() => initialValue);
 
+  // function to initialize the state by reading from local storage
   const initialize = (): T => {
     if (isServer) {
       return initialValue;
@@ -29,8 +31,7 @@ const useLocalStorage = <T>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Return a wrapped version of useState's setter function that ...
-  // ... persists the new value to localStorage.
+  // return a wrapped version of useState's setter function that persists the new value to localStorage.
   const setValue: Dispatch<SetStateAction<T>> = (value: SetStateAction<T>) => {
     try {
       const valueToStore =

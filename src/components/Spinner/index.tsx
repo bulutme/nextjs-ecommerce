@@ -1,3 +1,4 @@
+import { FC } from "react";
 import styled, { keyframes } from "styled-components";
 
 const rotate = keyframes`
@@ -15,7 +16,7 @@ const SpinnerStyled = styled.div`
   animation: ${rotate} 1s linear infinite;
 `;
 
-const Spinner: React.FC = () => {
+const Spinner: FC = () => {
   return <SpinnerStyled />;
 };
 

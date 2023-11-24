@@ -39,6 +39,7 @@ const ProductContainer = styled.div`
   padding: 1rem;
   border: 1px solid ${({ theme }) => theme.colors.border};
   transition: all 0.3s ease;
+  max-width: 350px;
 
   &:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -54,6 +55,7 @@ const ProductContainer = styled.div`
     flex-direction: column;
     align-items: initial;
     gap: 0;
+    max-width: initial;
   }
 `;
 
@@ -97,13 +99,14 @@ const Content = styled.div`
 const ProductName = styled.h3`
   font-size: 1rem;
   font-weight: ${({ theme }) => theme.fontWeight.semibold};
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 
   @media (min-width: ${({ theme }) => theme.screens.xs}) {
     font-size: 1.125rem;
     margin-top: 0.5rem;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
@@ -186,7 +189,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
             color="primary"
             $variant="rounded"
           >
-            Sepete Ekle
+            Add to cart
           </Button>
         </PriceContainer>
       </Content>

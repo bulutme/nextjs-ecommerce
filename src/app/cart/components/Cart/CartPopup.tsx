@@ -48,8 +48,8 @@ const CartPopup = ({ children }: CartPopupProps) => {
   const { cart, totalItemCount } = useCart();
   const isPopupVisible = totalItemCount > 0;
 
-  const content = cart.map((item, index) => (
-    <CartItem key={index} brand={item.brand} products={item.products} />
+  const content = cart.map((item) => (
+    <CartItem key={item.id} brand={item.brand} products={item.products} />
   ));
 
   return (

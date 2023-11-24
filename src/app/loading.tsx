@@ -1,5 +1,6 @@
 "use client";
 
+import { FC } from "react";
 import Spinner from "@/components/Spinner";
 import styled from "styled-components";
 
@@ -10,7 +11,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Loading = () => {
+const Loading: FC = () => {
   return (
     <Container>
       <Spinner />

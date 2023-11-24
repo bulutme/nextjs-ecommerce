@@ -3,20 +3,20 @@
 
 import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-import { FetchProductsResponse, Product } from "@/app/types/Product/types";
+import { FetchResponse, MustHaveId } from "@/app/types/Product/types";
 import ProductItem from "../Product/Item";
 import { useInView } from "react-intersection-observer";
 import Loading from "@/app/loading";
 import EmptyProductList from "../Product/EmptyProductList";
 
-type Props = {
-  initialData: Product[];
+type Props<T extends MustHaveId> = {
+  initialItems: T[];
   search?: string;
-  hasNextPage: Boolean;
-  query: (
+  hasNextPage: boolean;
+  fetchItems: (
     page: number,
     search?: string | undefined
-  ) => Promise<FetchProductsResponse>;
+  ) => Promise<FetchResponse<T>>;
 };
 
 const Container = styled.div`
@@ -52,24 +52,32 @@ const SpinnerWrapper = styled.div`
   }
 `;
 
-const InfinityScroll = ({ initialData, search, hasNextPage, query }: Props) => {
+// MustHaveId ensure that the objects passed as items (T) in the InfinityScroll component have an id property.
+const InfinityScroll = <T extends MustHaveId>({
+  initialItems,
+  search,
+  hasNextPage,
+  fetchItems,
+}: Props<T>) => {
+  // use the useInView hook to determine when the bottom of the container is in view.
   const [ref, inView] = useInView();
 
-  const [products, setProducts] = useState<Product[]>([]);
+  const [items, setItems] = useState<T[]>([]);
   const [page, setPage] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState<Boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const loadMoreProducts = useCallback(async () => {
+  // memoize loadMore function to load more items
+  const loadMore = useCallback(async () => {
     try {
       if (inView && page > 0) {
         const next = page + 1;
-        const productsData = await query(next, search!);
-        if (productsData.data?.length) {
+        const itemsData = await fetchItems(next, search!);
+        if (itemsData.data?.length) {
           setPage(next);
-          setIsLoading(productsData.hasNextPage);
-          setProducts((prev: Product[] | undefined) => [
+          setIsLoading(itemsData.hasNextPage);
+          setItems((prev: T[] | undefined) => [
             ...(prev?.length ? prev : []),
-            ...productsData.data,
+            ...itemsData.data,
           ]);
         }
       }
@@ -78,32 +86,25 @@ const InfinityScroll = ({ initialData, search, hasNextPage, query }: Props) => {
     }
   }, [page, inView, search]);
 
+  // useEffect to initialize state when the component mounts or when the search prop changes.
   useEffect(() => {
     setPage(1);
-    setProducts(initialData);
+    setItems(initialItems);
     setIsLoading(hasNextPage);
-  }, [initialData, search]);
+  }, [initialItems, search]);
 
+  // useEffect to load more items when inView changes.
   useEffect(() => {
-    loadMoreProducts();
+    loadMore();
   }, [inView]);
 
-  if (!isLoading && products.length === 0) return <EmptyProductList />;
+  if (!isLoading && items.length === 0) return <EmptyProductList />;
 
   return (
     <Container>
       <GridContainer>
-        {products.map((item) => (
-          <ProductItem
-            key={item.id}
-            name={item.name}
-            description={item.description}
-            image={item.image}
-            price={item.price}
-            id={item.id}
-            brand={item.brand}
-            category={item.category}
-          />
+        {items.map((item) => (
+          <ProductItem key={item.id} {...item} />
         ))}
       </GridContainer>
       {isLoading && (

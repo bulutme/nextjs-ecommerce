@@ -20,3 +20,13 @@ export type FetchProductsResponse = {
   page: Number;
   hasNextPage: boolean;
 };
+
+export type FetchResponse<T> = {
+  data: T[];
+  page: Number;
+  hasNextPage: boolean;
+};
+
+export type MustHaveId = {
+  id: string | number;
+};

@@ -1,18 +1,15 @@
 "use server";
 
-import { Product } from "./types/Product/types";
+import { FetchResponse, Product } from "./types/Product/types";
 
-interface FetchProductsResponse {
-  data: Product[];
-  page: number;
-  hasNextPage: boolean;
-}
-
+// function to fetch products from the API based on the page number and optional search query.
 const fetchProducts = async (
   page: number,
   search?: string
-): Promise<FetchProductsResponse> => {
-  const url = new URL(`http://localhost:3000/api/products?page=${page}`);
+): Promise<FetchResponse<Product>> => {
+  const url = new URL(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/products?page=${page}`
+  );
 
   if (search) {
     url.searchParams.append("query", search);

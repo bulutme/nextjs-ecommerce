@@ -1,5 +1,5 @@
 import MainLayout from "@/components/Layout";
-import StyledComponentsRegistry from "@/lib/registry";
+import StyledComponentsRegistry from "@/lib/styledComponentRegistry";
 import { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Suspense } from "react";

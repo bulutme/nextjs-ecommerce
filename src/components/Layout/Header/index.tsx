@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { FC, useCallback } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import Button from "@/components/Button";
@@ -71,7 +71,7 @@ const Badge = styled.span<{ $showBadge: boolean }>`
   display: ${({ $showBadge }) => ($showBadge ? "block" : "none")};
 `;
 
-const Header = () => {
+const Header: FC = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();

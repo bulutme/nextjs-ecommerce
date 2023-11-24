@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, FC } from "react";
 import Spinner from "../Spinner";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -98,7 +98,7 @@ const ButtonStyled = styled.button<ButtonProps>`
     `}
 `;
 
-const Button: React.FC<ButtonProps> = ({
+const Button: FC<ButtonProps> = ({
   icon,
   iconSize = 16,
   loading = false,

@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, FC, ReactNode, useContext, useState } from "react";
 
 export type ToastType = "success" | "error" | "exit";
 
@@ -18,16 +18,15 @@ const MAX_TOASTS = 5;
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
-export const ToastProvider: React.FC<{ children: ReactNode }> = ({
-  children,
-}) => {
+export const ToastProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [toasts, setToasts] = useState<ToastData[]>([]);
 
+  // function to add toast using type and message
   const addToast = (type: ToastType, message: string) => {
     const id = new Date().getTime();
     const newToast: ToastData = { id, type, message };
 
-    // En fazla 5 tostu koru
+    // remove the latest one if toast item more than 5
     setToasts((prevToasts) => [...prevToasts.slice(-MAX_TOASTS + 1), newToast]);
 
     if (type !== "exit") {
@@ -37,6 +36,7 @@ export const ToastProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
 
+  // function to remove toast
   const removeToast = (id: number) => {
     setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
   };
@@ -54,6 +54,7 @@ export const ToastProvider: React.FC<{ children: ReactNode }> = ({
   );
 };
 
+// custom hook to use toast context
 export const useToast = () => {
   const context = useContext(ToastContext);
   if (!context) {

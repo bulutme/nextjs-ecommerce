@@ -12,6 +12,7 @@ export const theme = {
     success: "#16a34a",
   },
   screens: {
+    "2xs": "400px",
     xs: "480px",
     sm: "576px",
     md: "768px",
