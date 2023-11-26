@@ -17,7 +17,7 @@ const GlobalStyles = createGlobalStyle`
 
   a {
     text-decoration: none;
-    width: fit-content;
+    width: auto;
   }
 
   ul {
