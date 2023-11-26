@@ -28,3 +28,5 @@ export const theme = {
     bold: 700,
   },
 };
+
+export type Theme = typeof theme;
