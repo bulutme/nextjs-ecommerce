@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Component renders correctly 1`] = `
+<button
+  class="sc-8ece167d-0 edbFp"
+  color="primary"
+>
+  Click me
+</button>
+`;
+
+exports[`Button Component renders correctly with icon and loading 1`] = `
+<button
+  class="sc-8ece167d-0 edbFp"
+  color="primary"
+>
+  <span
+    style="width: 16px; height: 16px; font-size: 16px; margin-right: 8px;"
+  >
+    <span>
+      🚀
+    </span>
+  </span>
+  <div
+    class="sc-ecd6f36e-0 eVitae"
+  />
+  Click me
+</button>
+`;
+
+exports[`Button Component renders correctly with specific props 1`] = `
+<button
+  class="sc-8ece167d-0 kzNUVk"
+  color="primary"
+  disabled=""
+>
+  Click me
+</button>
+`;
