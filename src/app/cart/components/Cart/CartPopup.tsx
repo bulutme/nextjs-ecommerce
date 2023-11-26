@@ -36,6 +36,8 @@ const Content = styled.div`
 `;
 
 const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   bottom: 0;
   position: sticky;
@@ -44,8 +46,26 @@ const ButtonContainer = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
+const TotalRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  padding: 8px;
+`;
+
+const PriceTitle = styled.span`
+  font-size: 0.875rem;
+`;
+
+const TotalPrice = styled.span`
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  font-size: 1.25rem;
+  color: ${({ theme }) => theme.colors.primary};
+`;
+
 const CartPopup = ({ children }: CartPopupProps) => {
-  const { cart, totalItemCount } = useCart();
+  const { cart, totalItemCount, totalPrice } = useCart();
   const isPopupVisible = totalItemCount > 0;
 
   const content = cart.map((item) => (
@@ -61,11 +81,15 @@ const CartPopup = ({ children }: CartPopupProps) => {
             <Title>My Cart ({totalItemCount} Products)</Title>
             <Content>{content}</Content>
             <ButtonContainer>
+              <TotalRow>
+                <PriceTitle>Total</PriceTitle>
+                <TotalPrice>${totalPrice}</TotalPrice>
+              </TotalRow>
               <Link href="/cart">
                 <Button
                   $fullwidth={true}
                   $variant="rounded"
-                  size="small"
+                  size="medium"
                   color="primary"
                 >
                   Go to Cart

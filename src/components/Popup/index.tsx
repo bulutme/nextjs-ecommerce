@@ -21,14 +21,15 @@ const PopupContent = styled.div<{ $visible: boolean }>`
   position: absolute;
   z-index: 1000;
   top: 80%;
-  left: -50%;
+  left: -20%;
   transform: translateX(-50%);
-  width: 400px;
+  width: max-content;
+  max-width: 350px;
   max-height: 450px;
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+  transition: opacity 50ms, visibility 50ms, transform 50ms;
 
   ${PopupContainer}:hover & {
     visibility: visible;
