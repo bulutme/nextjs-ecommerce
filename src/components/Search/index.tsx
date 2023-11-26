@@ -1,7 +1,8 @@
-import React, { FC } from "react";
+import React, { ChangeEvent, FC } from "react";
 import styled from "styled-components";
 import debounce from "lodash.debounce";
 import Input from "../Input";
+import createDebouncedFunction from "@/helpers/utils";
 interface SearchInputProps {
   onSearch: (query: string) => void;
   $fullwidth?: boolean;
@@ -23,14 +24,19 @@ const SearchInput: FC<SearchInputProps> = ({
   initialValue,
 }) => {
   // create a debounced version of the onSearch function
-  const debouncedSearch = debounce(onSearch, 300);
+  const debouncedSearch = createDebouncedFunction(onSearch, 300);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    debouncedSearch(e.target.value);
+  };
+
   return (
     <InputWrapper $fullwidth={$fullwidth}>
       <Input
         name="search"
         type="text"
         placeholder="Search by product, brand and category"
-        onChange={(e) => debouncedSearch(e.target.value)}
+        onChange={handleChange}
         defaultValue={initialValue}
       />
     </InputWrapper>

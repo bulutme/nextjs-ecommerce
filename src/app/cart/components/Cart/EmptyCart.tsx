@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Button from "../../../../components/Button";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const EmptyCartContainer = styled.div`
   width: 100%;
@@ -43,17 +43,25 @@ const CartText = styled.span`
 `;
 
 const EmptyCart = () => {
+  const router = useRouter();
+
+  const handleStartShoppingClick = () => {
+    router.back();
+  };
   return (
     <EmptyCartContainer>
       <CartIconWrapper>
         <CartIcon />
         <CartText>No products in the cart</CartText>
       </CartIconWrapper>
-      <Link href="/">
-        <Button size="large" $variant="rounded" color="primary">
-          Start Shopping
-        </Button>
-      </Link>
+      <Button
+        onClick={handleStartShoppingClick}
+        size="large"
+        $variant="rounded"
+        color="primary"
+      >
+        Start Shopping
+      </Button>
     </EmptyCartContainer>
   );
 };

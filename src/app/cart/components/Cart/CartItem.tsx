@@ -59,9 +59,15 @@ const ProductDetails = styled.div`
   margin-left: 1rem;
 `;
 
+// it shows in just two lines
 const Description = styled.p`
   font-size: 1rem;
   color: rgb(31 41 55);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
 `;
 
 const QuantityWrapper = styled.div`
@@ -93,7 +99,7 @@ const CloseIcon = styled(AiOutlineClose)`
   position: absolute;
   width: 28px;
   height: 28px;
-  top: 0;
+  top: -10px;
   right: 0;
   padding: 6px;
   border-radius: 50%;

@@ -14,6 +14,11 @@ const CartTitle = styled.h2`
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   font-size: 1.5rem;
   margin-bottom: 0.75rem;
+  text-align: center;
+
+  @media (min-width: ${({ theme }) => theme.screens.md}) {
+    text-align: start;
+  }
 `;
 
 const CartContent = styled.div`

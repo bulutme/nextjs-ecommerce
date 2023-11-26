@@ -1,3 +1,4 @@
+import { createDelayedAction } from "@/helpers/utils";
 import { createContext, FC, ReactNode, useContext, useState } from "react";
 
 export type ToastType = "success" | "error" | "exit";
@@ -30,7 +31,7 @@ export const ToastProvider: FC<{ children: ReactNode }> = ({ children }) => {
     setToasts((prevToasts) => [...prevToasts.slice(-MAX_TOASTS + 1), newToast]);
 
     if (type !== "exit") {
-      setTimeout(() => {
+      createDelayedAction(() => {
         removeToast(id);
       }, 3000);
     }
