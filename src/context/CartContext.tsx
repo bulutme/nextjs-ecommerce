@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import { ProductItemProps } from "@/app/types/Product/types";
 import useLocalStorage from "@/hooks/useLocalStorage";
-import { generateShortId } from "@/lib/utils";
+import { generateShortId } from "@/helpers/utils";
 
 type CartItem = {
   product: ProductItemProps;
@@ -41,7 +41,9 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
   // function to set initial cart items from local storage
   const setInitialCartItems = () => {
     setIsLoading(true);
-    setCart(JSON.parse(localStorage.getItem("cart") as string));
+    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    setCart(storedCart);
     setIsLoading(false);
   };
 
@@ -142,26 +144,40 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // calculate the total item count in the cart
-  const totalItemCount = cart.reduce(
-    (total, group) =>
-      total +
-      group.products.reduce((groupTotal, item) => groupTotal + item.count, 0),
-    0
-  );
+  const totalItemCount = cart
+    ? cart.reduce(
+        (total, group) =>
+          total +
+          (group.products
+            ? group.products.reduce(
+                (groupTotal, item) => groupTotal + item.count,
+                0
+              )
+            : 0),
+        0
+      )
+    : 0;
 
   // calculate the total price of items in the cart
-  const totalPrice = cart.reduce(
-    (total, group) =>
-      total +
-      group.products.reduce(
-        (groupTotal, item) => groupTotal + item.count * item.product.price,
+  const totalPrice = cart
+    ? cart.reduce(
+        (total, group) =>
+          total +
+          (group.products
+            ? group.products.reduce(
+                (groupTotal, item) =>
+                  groupTotal + item.count * item.product.price,
+                0
+              )
+            : 0),
         0
-      ),
-    0
-  );
+      )
+    : 0;
 
   // format the total price to a string with two decimal places
-  const formattedTotalPrice = totalPrice.toFixed(2);
+  const formattedTotalPrice = isNaN(totalPrice)
+    ? "0.00"
+    : totalPrice.toFixed(2);
 
   // memoize the context value to prevent unnecessary re-renders
   const contextValue = useMemo(

@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { ButtonHTMLAttributes, FC } from "react";
 import Spinner from "../Spinner";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactNode;
   iconSize?: number;
   loading?: boolean;
