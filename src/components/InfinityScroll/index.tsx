@@ -108,7 +108,7 @@ const InfinityScroll = <T extends MustHaveId>({
         ))}
       </GridContainer>
       {isLoading && (
-        <SpinnerWrapper ref={ref}>
+        <SpinnerWrapper data-testid="loading-spinner" ref={ref}>
           <Loading />
         </SpinnerWrapper>
       )}

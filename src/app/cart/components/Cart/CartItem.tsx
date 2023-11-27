@@ -103,7 +103,6 @@ const CloseIcon = styled(AiOutlineClose)`
   right: 0;
   padding: 6px;
   border-radius: 50%;
-  max-right: 0;
   cursor: pointer;
   transition: opacity 0.3s, transform 0.3s;
 
@@ -174,7 +173,7 @@ const CartItem: React.FC<CartItemProps> = ({ brand, products }) => {
                 alt={item.product.name}
                 width={100}
                 height={100}
-                loading="lazy"
+                priority
               />
               <ProductDetails>
                 <div>
@@ -185,6 +184,7 @@ const CartItem: React.FC<CartItemProps> = ({ brand, products }) => {
                   <Price>${item.product.price}</Price>
                   <QuantityWrapper>
                     <StyledButton
+                      data-testid="decrease-button"
                       disabled={item.count <= 1}
                       onClick={() =>
                         handleDecreaseCount(item.product.id, item.product.name)
@@ -194,6 +194,7 @@ const CartItem: React.FC<CartItemProps> = ({ brand, products }) => {
                     </StyledButton>
                     <Quantity>{item.count}</Quantity>
                     <StyledButton
+                      data-testid="increase-button"
                       onClick={() =>
                         handleIncreaseCount(item.product.id, item.product.name)
                       }
@@ -204,6 +205,7 @@ const CartItem: React.FC<CartItemProps> = ({ brand, products }) => {
                 </PriceAndQuantity>
               </ProductDetails>
               <CloseIcon
+                data-testid="remove-button"
                 onClick={() =>
                   handleRemoveProduct(item.product.id, item.product.name)
                 }

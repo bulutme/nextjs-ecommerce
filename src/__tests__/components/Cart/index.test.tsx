@@ -2,7 +2,8 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 import { theme } from "@/styles/theme";
-import EmptyCart from "@/app/cart/components/Cart/EmptyCart";
+import Cart from "@/app/cart/components/Cart";
+import { CartProvider } from "@/context/CartContext";
 
 const mockRouter = {
   push: jest.fn(),
@@ -12,10 +13,12 @@ jest.mock("next/navigation", () => ({
   useRouter: () => mockRouter,
 }));
 
-test("EmptyCart renders correctly", () => {
+test("Cart component renders correctly", () => {
   const { asFragment } = render(
     <ThemeProvider theme={theme}>
-      <EmptyCart />
+      <CartProvider>
+        <Cart />
+      </CartProvider>
     </ThemeProvider>
   );
 

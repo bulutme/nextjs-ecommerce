@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CartSummary renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-322003de-1 fzDnPL"
+  >
+    <h3
+      class="sc-322003de-0 gULtEc"
+    >
+      Cart Summary
+    </h3>
+    <div
+      class="sc-322003de-2 geIEUV"
+    >
+      <div
+        class="sc-322003de-3 fmzNQp"
+      >
+        <span
+          class="sc-322003de-4 hBTllM"
+        >
+          Subtotal
+        </span>
+        <span
+          class="sc-322003de-5 dKYRVM"
+        >
+          $0.00
+        </span>
+      </div>
+      <div
+        class="sc-322003de-3 fmzNQp"
+      >
+        <span
+          class="sc-322003de-4 hBTllM"
+        >
+          Shipping
+        </span>
+        <span
+          class="sc-322003de-5 dKYRVM"
+        >
+          Free
+        </span>
+      </div>
+      <div
+        class="sc-322003de-3 sc-322003de-6 fmzNQp deJeMf"
+      >
+        <span
+          class="sc-322003de-4 hBTllM"
+        >
+          Total
+        </span>
+        <span
+          class="sc-322003de-5 sc-322003de-7 dKYRVM kGRzLl"
+        >
+          $0.00
+        </span>
+      </div>
+    </div>
+  </div>
+  <button
+    class="sc-e6c76d24-0 lfwATC"
+    color="primary"
+  >
+    Proceed to checkout
+  </button>
+</DocumentFragment>
+`;

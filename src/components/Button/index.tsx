@@ -76,7 +76,7 @@ const ButtonStyled = styled.button<ButtonProps>`
     $fullwidth &&
     css`
       width: 100%;
-    `}
+    `} 
 
   ${({ loading }) =>
     loading &&

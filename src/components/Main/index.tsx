@@ -17,6 +17,7 @@ const Main = async ({ searchParams: { query, page = "1" } }: MainProps) => {
 
   return (
     <InfinityScroll
+      data-testid="infinity-scroll"
       initialItems={response?.data}
       search={query}
       hasNextPage={response?.hasNextPage}

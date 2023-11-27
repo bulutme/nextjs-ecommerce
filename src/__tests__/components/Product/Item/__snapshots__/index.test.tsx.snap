@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot when Add to Cart button is clicked 1`] = `
+<div>
+  <div
+    class="sc-6a90263a-1 kPhoNf"
+  >
+    <div
+      class="sc-6a90263a-2 gmckNz"
+    >
+      <img
+        alt="Sample Product"
+        class="sc-6a90263a-3 blhajF"
+        data-nimg="1"
+        decoding="async"
+        fetchpriority="high"
+        height="300"
+        src="/_next/image?url=https%3A%2F%2Fsource.unsplash.com%2Frandom%2F300%C3%97300&w=1080&q=75"
+        srcset="/_next/image?url=https%3A%2F%2Fsource.unsplash.com%2Frandom%2F300%C3%97300&w=640&q=75 1x, /_next/image?url=https%3A%2F%2Fsource.unsplash.com%2Frandom%2F300%C3%97300&w=1080&q=75 2x"
+        style="color: transparent;"
+        width="500"
+      />
+      <p
+        class="sc-6a90263a-0 ZZjYn"
+      >
+        Sample description
+      </p>
+    </div>
+    <div
+      class="sc-6a90263a-4 eddXMR"
+    >
+      <p
+        class="sc-6a90263a-6 edlzUM"
+      >
+        Sample Brand
+      </p>
+      <h3
+        class="sc-6a90263a-5 hqOZZq"
+      >
+        Sample Product
+      </h3>
+      <p
+        class="sc-6a90263a-7 bUwdxL"
+      >
+        Electronics
+      </p>
+      <div
+        class="sc-6a90263a-8 lnAPoO"
+      >
+        <span
+          class="sc-6a90263a-9 iKWciJ"
+        >
+          $
+          29.99
+        </span>
+        <button
+          class="sc-e6c76d24-0 iuIUPx"
+          color="primary"
+        >
+          Add to cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
