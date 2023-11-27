@@ -69,7 +69,7 @@ const Toaster: FC = () => {
   const { toasts, removeToast } = useToast();
 
   return (
-    <ToasterContainer>
+    <ToasterContainer data-testid="toaster-container">
       {toasts.map((toast) => (
         <Toast
           key={toast.id}
@@ -83,11 +83,7 @@ const Toaster: FC = () => {
           }}
         >
           <ToastIcon>
-            {toast.type === "success" ? (
-              <FaCheckCircle className="toast-icon success" />
-            ) : (
-              <FaTimesCircle className="toast-icon error" />
-            )}
+            {toast.type === "success" ? <FaCheckCircle /> : <FaTimesCircle />}
           </ToastIcon>
           <ToastMessage>{toast.message}</ToastMessage>
         </Toast>

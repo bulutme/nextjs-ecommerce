@@ -2,7 +2,7 @@
 
 exports[`Button Component renders correctly 1`] = `
 <button
-  class="sc-8ece167d-0 edbFp"
+  class="sc-e6c76d24-0 gXeFVB"
   color="primary"
 >
   Click me
@@ -11,7 +11,7 @@ exports[`Button Component renders correctly 1`] = `
 
 exports[`Button Component renders correctly with icon and loading 1`] = `
 <button
-  class="sc-8ece167d-0 edbFp"
+  class="sc-e6c76d24-0 gXeFVB"
   color="primary"
 >
   <span
@@ -30,7 +30,7 @@ exports[`Button Component renders correctly with icon and loading 1`] = `
 
 exports[`Button Component renders correctly with specific props 1`] = `
 <button
-  class="sc-8ece167d-0 kzNUVk"
+  class="sc-e6c76d24-0 knoaAI"
   color="primary"
   disabled=""
 >

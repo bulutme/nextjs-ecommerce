@@ -14,8 +14,8 @@ const MainLayout: FC<Props> = ({ children }) => {
   return (
     <Providers>
       <GlobalStyles />
-      <Container>
-        <Header />
+      <Container data-testid="main-layout">
+        <Header data-testid="header" />
         {children}
       </Container>
     </Providers>
