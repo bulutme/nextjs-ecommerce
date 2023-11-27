@@ -3,13 +3,13 @@
 exports[`EmptyCart renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="sc-59707163-0 WGJsU"
+    class="sc-bf280e05-0 gMjKVK"
   >
     <span
-      class="sc-59707163-1 pcGEy"
+      class="sc-bf280e05-1 cdKJAo"
     >
       <svg
-        class="sc-59707163-2 iYHfkg"
+        class="sc-bf280e05-2 fTVQXu"
         fill="currentColor"
         height="1em"
         stroke="currentColor"
@@ -23,21 +23,17 @@ exports[`EmptyCart renders correctly 1`] = `
         />
       </svg>
       <span
-        class="sc-59707163-3 Oergn"
+        class="sc-bf280e05-3 ckuXTV"
       >
         No products in the cart
       </span>
     </span>
-    <a
-      href="/"
+    <button
+      class="sc-e6c76d24-0 cCPnRY"
+      color="primary"
     >
-      <button
-        class="sc-8ece167d-0 ivkVPE"
-        color="primary"
-      >
-        Start Shopping
-      </button>
-    </a>
+      Start Shopping
+    </button>
   </div>
 </DocumentFragment>
 `;
