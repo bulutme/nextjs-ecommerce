@@ -12,7 +12,6 @@
   "dependencies": {
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.1.2",
-    "@types/lodash.debounce": "^4.0.9",
     "@types/styled-components": "^5.1.30",
     "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
