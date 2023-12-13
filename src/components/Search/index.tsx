@@ -1,6 +1,5 @@
 import React, { ChangeEvent, FC } from "react";
 import styled from "styled-components";
-import debounce from "lodash.debounce";
 import Input from "../Input";
 import createDebouncedFunction from "@/helpers/utils";
 interface SearchInputProps {
